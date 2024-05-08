@@ -1,23 +1,14 @@
 import os
 import csv
 from typing import *
-import random
 import argparse
-from datetime import datetime
-from dataclasses import dataclass
 
 from tqdm import tqdm
-
 import numpy as np
-import pandas as pd
-from PIL import Image, ImageOps
 
 import torch
-import torch.nn as nn
 from torch.utils.data import DataLoader
-
 from transformers import AutoModel, AutoImageProcessor, AutoTokenizer
-from datasets import Dataset
 
 from kovar.preprocess import KoVARDataset, KoVARDataCollator
 from kovar.model import  DualEncoderModelForMultipleChoice
@@ -125,7 +116,6 @@ def main():
     with torch.no_grad():
         for batch in test_pbar:
             inputs, labels, story_ids = batch
-            
 
             for key, value in inputs.items():
                 inputs[key] = value.to(args.device)
@@ -139,7 +129,6 @@ def main():
             is_correct = (pred == labels).float()
             acc = is_correct.mean().item()
             test_pbar.set_postfix({'accuracy':acc})  
-
 
             batch_size= logits.size(0)
             for i in range(batch_size):

@@ -2,22 +2,16 @@ import os
 import csv
 from typing import *
 import argparse
-from datetime import datetime
-from dataclasses import dataclass
 
 from tqdm import tqdm
 
-import numpy as np
-import pandas as pd
-from PIL import Image, ImageOps
-
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 from transformers import AutoModel, AutoImageProcessor, AutoTokenizer
-from datasets import Dataset
+
+from kovar.model import DualEncoderModelForMultipleChoice
+from kovar.preprocess import KoVARDataset, KoVARDataCollator
 
 def make_parser():
     parser  = argparse.ArgumentParser()
@@ -52,9 +46,6 @@ def make_parser():
 args = make_parser().parse_args()
 print(args)
 
-from kovar.model import DualEncoderModelForMultipleChoice
-from kovar.preprocess import KoVARDataset, KoVARDataCollator
-
 def show_model_state_info(checkpoint):
     print("**Model State Info**")
     print(f'best epoch : {checkpoint["epoch"]}') 
@@ -65,7 +56,6 @@ def show_model_state_info(checkpoint):
 
 
 def main():
-   
     sentence_types =['GROUNDTRUTH', 'PLAUSIBLE', 'IMPLAUSIBLE', 'RANDOM']
 
     # Load dataset & data loader
