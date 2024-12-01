@@ -1,4 +1,22 @@
-# Train
+<div align="center">    
+ 
+# Korean visual abductive reasoning: AI Language Model’s ability to understand plausibility
+ 
+
+[![Paper](https://img.shields.io/badge/paper-Linguistic_Research_v41--2-red)](http://isli.khu.ac.kr/journal/content/data/41_2/4.pdf)
+[![Conference](https://img.shields.io/badge/ALAK-2024-blue)]()
+
+</div>
+ 
+## Description   
+This repository is to archive the official implementation and experimental results for the paper "Korean visual abductive reasoning: AI Language Model's ability to understand plausibility" by Seonah Han, Jongbin Won, Eunjae Kwon, and Sanghoun Song.
+
+## Key Contributions
+This study investigates how a multimodal language model numerically estimates the plausibility of Korean hypothesis sentences in visual abductive reasoning tasks. The research utilizes a dual encoder model and the Korean Story Cloze dataset to analyze the model's ability to understand and compare the plausibility of different hypotheses.
+
+
+## How to run   
+### Train
 ```
 python3 train.py \
 --project={your_wandb_project_name} \
@@ -18,7 +36,7 @@ python3 train.py \
 --text_format='{obs1} {hyp} {obs2}'
 ```
 
-# Inference
+### Inference
 * 4 hypotheses
 ```
 python3 inference_4_hyps.py \
@@ -42,3 +60,21 @@ python3 inference_2_hyps.py \
 --device=cpu \
 --batch_size=32
 ```
+
+
+### Citation   
+```
+@article{seonah2024korean,
+  title={Korean visual abductive reasoning: AI Language Model’s ability to understand plausibility},
+  author={Seonah, Han and Jongbin, Won and Eunjae, Kwon and Sanghoun, Song},
+  journal={Linguistic Research},
+  year={2024},
+  volume={41},
+  number={2},
+  pages={283--310}
+}
+```   
+
+
+### LICENSE
+MIT
